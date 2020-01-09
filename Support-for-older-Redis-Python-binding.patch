@@ -1,0 +1,25 @@
+From 8167153cc069eacd041b0b0d6bb19150f291d881 Mon Sep 17 00:00:00 2001
+From: Marek Goldmann <marek.goldmann@gmail.com>
+Date: Thu, 21 Nov 2013 11:12:22 +0100
+Subject: [PATCH] Support for older Redis Python binding
+
+---
+ lib/cache.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/cache.py b/lib/cache.py
+index 4b0f93d..534eb55 100644
+--- a/lib/cache.py
++++ b/lib/cache.py
+@@ -29,7 +29,7 @@ def init():
+     for k, v in cache.iteritems():
+         redis_opts[k] = v
+     logging.info('Redis config: {0}'.format(redis_opts))
+-    redis_conn = redis.StrictRedis(host=redis_opts['host'],
++    redis_conn = redis.Redis(host=redis_opts['host'],
+                                    port=int(redis_opts['port']),
+                                    db=int(redis_opts['db']),
+                                    password=redis_opts['password'])
+-- 
+1.8.5.3
+
